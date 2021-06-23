@@ -1,10 +1,10 @@
-// import dependencies
-const IBMCloudEnv = require('ibm-cloud-env');
-IBMCloudEnv.init('/server/config/mappings.json');
-
-// initialize Cloudant
+// Load the Cloudant library.
 const CloudantSDK = require('@cloudant/cloudant');
-const cloudant = new CloudantSDK(IBMCloudEnv.getString('cloudant_url'));
+
+// Initialize Cloudant with settings from .env
+var cloudant_url = process.env.CLOUDANT_URL;
+console.log(cloudant_url);
+const cloudant = CloudantSDK(cloudant_url);
 
 // create mydb database if it does not already exist
 cloudant.db.create('mydb')

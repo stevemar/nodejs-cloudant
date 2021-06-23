@@ -1,10 +1,10 @@
 // import dependencies and initialize express
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const nameRoutes = require('./routes/names-route.js');
-const healthRoutes = require('./routes/health-route.js');
 
 const app = express();
 
@@ -22,7 +22,6 @@ if (process.env.VCAP_APPLICATION) {
 app.use(express.static(path.join('public')));
 
 // routes and api calls
-app.use('/health', healthRoutes);
 app.use('/api/names', nameRoutes);
 
 // start node server
